@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виктор Викторович Зенин - Project Leader QA</title>
+    <style>
+        /* Все стили встроены прямо здесь */
+        :root {
+            --primary-dark: #0a192f;
+            --secondary-dark: #1a365d;
+            --accent-gold: #d4af37;
+            --accent-blue: #4299e1;
+            --text-primary: #f7fafc;
+            --text-secondary: #a0aec0;
+            --card-bg: #2d3748;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1e3a8a 100%);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(26, 54, 93, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Header */
+        .header {
+            padding: 50px;
+            background: linear-gradient(135deg, 
+                rgba(26, 54, 93, 0.95) 0%, 
+                rgba(45, 55, 72, 0.9) 100%);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--accent-gold) 0%, 
+                var(--accent-blue) 50%, 
+                var(--accent-gold) 100%);
+        }
+
+        .avatar-section {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .avatar-placeholder {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #f6e05e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            flex-shrink: 0;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .title h1 {
+            font-size: 3.2rem;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, var(--accent-gold), #ecc94b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 600px;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 50px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--accent-gold);
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--accent-blue);
+        }
+
+        /* Competencies */
+        .competencies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, 
+                rgba(45, 55, 72, 0.8) 0%, 
+                rgba(74, 85, 104, 0.6) 100%);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-blue));
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Experience */
+        .experience .job {
+            margin-bottom: 35px;
+            padding-bottom: 35px;
+            border-bottom: 1px solid rgba(160, 174, 192, 0.2);
+            position: relative;
+        }
+
+        .experience .job:last-child {
+            border-bottom: none;
+        }
+
+        .job h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .duration {
+            color: var(--accent-blue);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(66, 153, 225, 0.1);
+            border-radius: 20px;
+        }
+
+        .job ul {
+            padding-left: 25px;
+            margin-top: 15px;
+        }
+
+        .job li {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .job li::before {
+            content: '▸';
+            color: var(--accent-gold);
+            position: absolute;
+            left: -15px;
+        }
+
+        .total-exp {
+            font-size: 1.3rem;
+            color: var(--accent-gold) !important;
+            padding-top: 25px;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.1) 50%, 
+                transparent 100%);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+        }
+
+        /* Methodologies */
+        .methodologies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .methodology-card {
+            background: rgba(45, 55, 72, 0.6);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(66, 153, 225, 0.1);
+            transition: var(--transition);
+        }
+
+        .methodology-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+        }
+
+        .methodology-card h4 {
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .methodology-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.15) 0%, 
+                rgba(66, 153, 225, 0.15) 100%);
+            color: var(--accent-gold);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.25) 0%, 
+                rgba(66, 153, 225, 0.25) 100%);
+            transform: scale(1.05) translateY(-2px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Achievements */
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .achievement {
+            background: rgba(45, 55, 72, 0.6);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-blue));
+        }
+
+        .achievement h4 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .achievement p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Education */
+        .education {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .edu-item {
+            background: rgba(45, 55, 72, 0.6);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(66, 153, 225, 0.1);
+        }
+
+        .edu-item h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 50px;
+            background: linear-gradient(135deg, 
+                rgba(26, 54, 93, 0.95) 0%, 
+                rgba(15, 25, 47, 0.9) 100%);
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .contacts h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--accent-gold);
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .contact-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background: rgba(45, 55, 72, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-link:hover {
+            background: linear-gradient(135deg, 
+                rgba(212, 175, 55, 0.1) 0%, 
+                rgba(66, 153, 225, 0.1) 100%);
+            color: var(--accent-gold);
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) saturate(100%) 
+                invert(76%) sepia(29%) saturate(1352%) 
+                hue-rotate(116deg) brightness(101%) contrast(101%);
+        }
+
+        .contact-link:hover .icon {
+            filter: brightness(0) saturate(100%) 
+                invert(77%) sepia(39%) saturate(566%) 
+                hue-rotate(358deg) brightness(94%) contrast(87%);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(160, 174, 192, 0.2);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header, .main-content, .footer {
+                padding: 40px 30px;
+            }
+            
+            .title h1 {
+                font-size: 2.6rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .avatar-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+            
+            .avatar-placeholder {
+                width: 120px;
+                height: 120px;
+                font-size: 48px;
+            }
+            
+            .title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .main-content, .footer {
+                padding: 30px 20px;
+            }
+            
+            .competencies, .methodologies, .achievements {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .card, .methodology-card, .achievement, .edu-item {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="avatar-section">
+                <div class="avatar-placeholder">
+                    <span>QA_Eng</span>
+                </div>
+                <div class="title">
+                    <h1>Иван Петров</h1>
+                    <p class="subtitle">Project Leader QA / Руководитель направления тестирования</p>
+                    <p class="tagline">Стратегия QA • Управление командой • Бизнес-метрики качества</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="section">
+                <h2>Лидерские качества</h2>
+                <div class="competencies">
+                    <div class="card">
+                        <h3>🎯 Стратегия и планирование</h3>
+                        <p>Разработка стратегии QA для проектов, декомпозиция целей на тактические задачи, управление бэклогом</p>
+                    </div>
+                    <div class="card">
+                        <h3>👥 Управление командой</h3>
+                        <p>Формирование команд (2-8 инженеров), менторство, проведение performance review, развитие hard/soft skills</p>
+                    </div>
+                    <div class="card">
+                        <h3>📊 Бизнес-метрики качества</h3>
+                        <p>Внедрение и мониторинг KPI качества (Escaped Defects, MTTR, Test Coverage), отчётность для стейкхолдеров</p>
+                    </div>
+                    <div class="card">
+                        <h3>🔄 Процессы и оптимизация</h3>
+                        <p>Реинжиниринг процессов тестирования, внедрение best practices, автоматизация рутинных операций</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Опыт руководства</h2>
+                <div class="experience">
+                    <div class="job">
+                        <h3>«РЖД» • Project Leader QA</h3>
+                        <p class="duration">2022 — настоящее время</p>
+                        <ul>
+                            <li>Руководство командой из 4 QA инженеров (найм, онбординг, развитие)</li>
+                            <li>Разработка стратегии тестирования для микросервисной архитектуры (15+ сервисов)</li>
+                            <li>Внедрение метрик качества: снижение Escaped Defects на 40% за год</li>
+                            <li>Координация с Product Owners и Development Managers по roadmap качества</li>
+                        </ul>
+                    </div>
+                    <div class="job">
+                        <h3>ООО «Ланит» • Tech Lead QA, отдел экспертизы</h3>
+                        <p class="duration">2018 — 2022 • 4+ года</p>
+                        <ul>
+                            <li>Техническое лидерство в направлении банкоматных решений (команда 15 инженеров)</li>
+                            <li>Разработка фреймворка для тестирования интеграций (CR/CDM/CIM)</li>
+                            <li>Создание системы обучения и certification path для новых инженеров</li>
+                            <li>Участие в presale: оценка рисков, effort estimation для новых проектов</li>
+                        </ul>
+                    </div>
+                    <div class="job">
+                        <h3>ООО «Ланит» • Senior QA Engineer</h3>
+                        <p class="duration">2016 — 2018 • 2+ года</p>
+                        <ul>
+                            <li>Экспертиза в области банкоматных решений, deep dive в лог-анализ</li>
+                            <li>Менторство junior/middle инженеров, код-ревью тестов</li>
+                            <li>Разработка инструментов для анализа инцидентов</li>
+                        </ul>
+                    </div>
+                    <div class="job">
+                        <p class="total-exp">Управленческий опыт: <strong>6+ лет</strong> (техлид + project leader)</p>
+                        <p class="total-exp">Общий опыт в QA: <strong>11+ лет</strong></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Методологии и фреймворки</h2>
+                <div class="methodologies">
+                    <div class="methodology-card">
+                        <h4>Agile/Scrum</h4>
+                        <p>Управление бэклогом QA, sprint planning, демо, ретроспективы</p>
+                    </div>
+                    <div class="methodology-card">
+                        <h4>SAFe</h4>
+                        <p>Участие в PI Planning, coordination across teams</p>
+                    </div>
+                    <div class="methodology-card">
+                        <h4>Shift-Left</h4>
+                        <p>Внедрение практик раннего тестирования, pairing с разработчиками</p>
+                    </div>
+                    <div class="methodology-card">
+                        <h4>Test Maturity Model</h4>
+                        <p>Оценка и повышение зрелости процессов тестирования</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Технический стек управления</h2>
+                <div class="skills">
+                    <span class="skill-tag">Test Strategy</span>
+                    <span class="skill-tag">Team Management</span>
+                    <span class="skill-tag">KPI / Metrics</span>
+                    <span class="skill-tag">Risk Management</span>
+                    <span class="skill-tag">Process Optimization</span>
+                    <span class="skill-tag">Jira/Confluence Admin</span>
+                    <span class="skill-tag">TestRail/Xray</span>
+                    <span class="skill-tag">CI/CD Governance</span>
+                    <span class="skill-tag">Budget Planning</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Достижения</h2>
+                <div class="achievements">
+                    <div class="achievement">
+                        <h4>🚀 Масштабирование команды</h4>
+                        <p>С нуля создал команду QA из 4 инженеров для critical-path проекта в РЖД</p>
+                    </div>
+                    <div class="achievement">
+                        <h4>📉 Снижение инцидентов</h4>
+                        <p>Добился снижения production инцидентов на 65% через внедрение proactive testing</p>
+                    </div>
+                    <div class="achievement">
+                        <h4>⏱️ Оптимизация процессов</h4>
+                        <p>Сократил time-to-market на 30% через реинжиниринг QA processes</p>
+                    </div>
+                    <div class="achievement">
+                        <h4>🎓 Развитие команды</h4>
+                        <p>Подготовил 3 инженеров до senior уровня, создал внутреннюю школу QA</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Образование и сертификации</h2>
+                <div class="education">
+                    <div class="edu-item">
+                        <h3>МГУ, Москва</h3>
+                        <p class="duration">2009</p>
+                    </div>
+                    <div class="edu-item">
+                        <h3>ISTQB Advanced Test Manager</h3>
+                        <p class="duration">2021</p>
+                    </div>
+                    <div class="edu-item">
+                        <h3>SAFe 5 Practitioner</h3>
+                        <p class="duration">2022</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="contacts">
+                <h2>Для обсуждения проектов и вакансий</h2>
+                <div class="contact-links">
+                    <a href="mailto:zenon11@yandex.ru" class="contact-link">
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span>Почтовый ящик</span>
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        <span>linkedin.com/in/yourprofile</span>
+                    </a>
+                    <a href="https://t.me/yourusername" class="contact-link" target="_blank">
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+                        </svg>
+                        <span>@yourusername</span>
+                    </a>
+                    <a href="https://github.com/yourusername" class="contact-link" target="_blank">
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span>github.com/yourusername</span>
+                    </a>
+                </div>
+                <p class="copyright">© 2025. Project Leader QA Portfolio. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
