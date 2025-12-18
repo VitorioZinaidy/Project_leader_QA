@@ -75,22 +75,28 @@
             gap: 35px;
         }
 
-        .avatar-placeholder {
-            width: 150px;
-            height: 150px;
-            border-radius: 20%;
-            background: linear-gradient(135deg, var(--accent-gold) 0%, #f6e05e 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 56px;
-            font-weight: 800;
-            color: var(--primary-dark);
-            flex-shrink: 0;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
-
+       .avatar-placeholder {
+  width: 150px;
+  height: 150px;
+  font-size: 28px;               /* чуть уменьшаем, чтобы поместилось две строки */
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border-radius: 20%;
+  display: flex;
+  flex-direction: column;        /* ← основное: расположить элементы вертикально */
+  justify-content: center;       /* ← центрировать по вертикали */
+  align-items: center;           /* ← центрировать по горизонтали */
+  line-height: 1.2;              /* ← уменьшаем межстрочный интервал */
+  text-align: center;
+  user-select: none;
+}
+        
+/* Опционально: сделать "Eng" чуть меньше или светлее */
+.avatar-placeholder .line2 {
+  font-size: 0.85em;
+  opacity: 0.9;
+}
         .title h1 {
             font-size: 3.2rem;
             margin-bottom: 12px;
@@ -717,6 +723,7 @@
 </body>
 
 </html>
+
 
 
 
